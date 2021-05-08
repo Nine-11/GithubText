@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>首頁</title>
+</head>
+<body>
+    <div id="app">
+        <h1 id="meg">{{message}}</h1>
+        <label for='id1'>考試成績</label>
+        <input type='text' name='id1' id='id1' placeholder="請輸入成績" v-model="score">
+        <h3 v-if="score>=60 && score<=100">恭喜你! 及格了</h3>
+        <h3 v-if="score<60 && score!=''">不及格~ 補考歡迎你</h3>
+        <div>
+            <ul >
+                <li v-for="name in names" @click="cons(name)">{{name}}</li>
+                <!-- v-on:=@ -->
+            </ul>
+        </div>
+        <hr>
+        <h3>單位換算</h3>
+         <label for='id1'>台幣:</label>
+        <input type='text' name='id1' id='id1' v-model="NT">
+        <h4>美元:<span v-if="NT!=0">{{japan}}</span> </h4>
+        <h4>日幣:<span v-if="NT!=0">{{ust}}</span> </h4>
+
+    </div>
+	 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+     </script>
+</body>
+<script>
+    var app =new Vue({
+        el:"app",
+        data:{
+            message:"Hello ~ World!",
+            score:"",
+            names:['Json','Stever','Niez'],
+            NT:0,
+
+        },
+        methods:{
+            con:(name)=>{
+                alert('Myname'+name);
+            },
+        },
+        computed:{
+            japan:function(){
+                return this.NT/30.2;
+            },
+            ust:function(){
+                return this.NT/0.27;
+            },
+        },
+    }) 
+
+</script>
+</html>
